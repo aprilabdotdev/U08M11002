@@ -1,1 +1,9 @@
+
+# Latex related files
 .texpadtmp
+*.aux
+*.fdb*
+*.fls
+*.log
+*.out
+*.xdv
