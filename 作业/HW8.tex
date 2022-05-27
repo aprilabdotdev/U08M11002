@@ -1,0 +1,109 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, bm, color, framed, graphicx, hyperref, mathrsfs, float, caption,subfigure}
+\usepackage[justification=centering]{caption}
+
+% multi-column
+\usepackage{tasks}
+% itemize
+\NewTasksEnvironment[label=(\arabic*), label-width=3ex]{exercise}
+
+\everymath{\displaystyle}
+
+\title{\textbf{第八次作业}}
+\author{U08M11002 Spring 2022}
+\date{提交截止日期：北京时间2022年6月1日}
+\linespread{1}
+\definecolor{shadecolor}{RGB}{241, 241, 255}
+
+\newcounter{problemname}
+\newenvironment{problem}{\stepcounter{problemname}\par\noindent\textbf{题目\arabic{problemname}. }}{\\\par}
+\newenvironment{warning}{\begin{shaded}\par\noindent\textbf{提交作业方式：}}{\end{shaded}\par}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{warning}
+		具体提交方式请以 QQ 群里助教的通知为准。
+		\begin{enumerate}
+			\item 为了你自己复习需要，\textbf{建议上交前自行扫描备份}。
+		\end{enumerate}
+	\end{warning}
+	
+	\hspace{1em}
+	
+	
+	\begin{problem}
+		已知系统的激励为$f(t) = (e^{-t} + e^{-3t})U(t)$，系统的零状态响应为$y(t) = (2e^{-t} - 2e^{-4t})U(t)$。
+		\begin{exercise}
+			\task 求系统的单位冲激响应$h(t)$;
+			\task 求系统的微分方程;
+		\end{exercise}
+		
+		\quad
+	\end{problem}
+	
+	
+	\begin{problem}
+		已知系统函数$H(s) = \frac{s+3}{s^{2} + 3s + 2}$，激励$f(t) = e^{-3t}U(t)$，初始状态$y(0^{-}) = 1$，$y^{'}(0^{-}) = 2$。求系统的全响应$y(t)$，零输入响应$y_{x}(t)$，零状态响应$y_{f}(t)$，并确定其自由响应与强迫响应分量。
+		\quad
+	\end{problem}
+	
+	\begin{problem}
+		已知$H(s) = \frac{3s}{s^{3} + 4s^{2} + 6s + 4}$，试画出直接形式、并联形式、级联形式的信号流图。
+		\quad
+	\end{problem}
+	
+	
+	\begin{problem}
+		求下列序列的卷积和$y(k) = f_{1}(k) * f_{2}(k)$。
+		\begin{exercise}
+			\task $f_{1}(k) = (\frac{1}{2})^{\textbar k \textbar}$，$f_{2}(k) = 1$;
+			\task $f_{1}(k) = \{\mathop{2}\limits_{\uparrow},2,1,-1 \}$，$f_{2}(k) = \{\mathop{0}\limits_{\uparrow},1,4,-2\}$;
+			\task $f_{1}(k) = (2)^{k+1}U(k+1)$，$f_2(k) = \delta(2 - k) + U(k)$;
+			\task $f_1(k) = (0.5)^{k}U(k)$，$f_2(k) = U(-k)$;
+		\end{exercise}
+		\quad
+	\end{problem}
+	
+
+	\begin{problem}
+		求下列卷积和：
+		\begin{exercise}
+			\task $U(k) * U(k)$;
+			\task $(0.25)^{k}U(k) * U(k)$;
+			\task $5^{k}U(k) * 3^{k}U(k)$;
+			\task $kU(k) * \delta(k - 2)$;
+		\end{exercise}
+		
+		\quad
+	\end{problem}
+	
+	\begin{problem}
+		求下列像函数的逆变换。
+		\begin{exercise}
+			\task $F(z) = \frac{z - 1}{z - 2}$，$\textbar z \textbar > 2$;
+			\task$F(z) = \frac{1}{z^{2} + 1}$，$\textbar z \textbar > 1$;
+			\task $F(z) = z^{-1} + 5z^{-2} -3z^{-5}$， $\textbar z \textbar > 0$;
+			\task$F(z) = \frac{z^{3}}{z - 2}$，$2 < \textbar z \textbar < \infty$;
+		\end{exercise}
+		\quad
+	\end{problem}
+	
+	\begin{problem}
+		用部分分式展开法求反变换。
+		\newline
+			\centerline{$F(z) = \frac{2z^{3} - 5z^{2} + z + 3}{z^{2} - 3z + 2}$，$2 < \textbar z \textbar < \infty$}
+		\quad
+	\end{problem}
+	
+	\begin{problem}
+		已知某$\mathrm{LTI}$因果系统的差分方程为:
+		\newline
+		\centerline{$y(k) - y(k-1) - 2y(k-2) = f(k) + 2f(k - 2)$。}
+		利用$z$变换求当$y(-1) = 2$，$y(-2) = -0.5$，激励为$f(k) = U(k)$时，系统的零输入响应和零状态响应。
+
+		\quad
+	\end{problem}
+	
+\end{document}
