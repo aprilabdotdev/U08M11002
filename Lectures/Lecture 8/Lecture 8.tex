@@ -1,0 +1,126 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{indentfirst}
+\usepackage{color}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{cases}
+\usepackage{array}
+
+% 设置纸张和页边距——A4
+\geometry{papersize={21cm,29.7cm}}
+\geometry{left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}
+
+% 一级标题靠左
+\CTEXsetup[format={\Large\bfseries}]{section}
+
+% 去除页眉
+\pagestyle{plain}
+
+% 开始文档内容
+\begin{document}
+
+\title{信号与系统课程笔记：Lecture 8}
+\author{授课教师：秦雨潇 \\
+        笔记记录：李梦薇}
+\date{2023 年 10 月 18 日（第七周，周三）}
+\maketitle
+
+\section{复习}
+\subsection{矢量的分解}
+我们希望，对于任意矢量$\vec{A}\in \mathbb{R} ^{n\times 1}$，可以分解为若干“子矢量”$\vec{v_i}$，若“子矢量”满足:\par
+\begin{enumerate}[label=(\arabic*),itemindent=0pt,labelindent=\parindent,labelwidth=2em,labelsep=5pt,leftmargin=*]
+    \item $\langle{\vec{v_i},\vec{v_j}}\rangle=\left\{
+          \begin{array}{cl}
+          1 &  i=j \\
+          0 &  i\neq{j} \\
+          \end{array} \right.$\par
+    \item $span\{\vec{v}_1,\vec{v}_2,\ldots,\vec{v}_n\}\in\mathbb{R}^{n\times1}$\par
+          则$\vec{A}=\sum_{i=1}^{n}C_i\vec{v}_i$，其中$C_i=\frac{\langle{\vec{A},\vec{v}_i}\rangle}{\|\vec{v}_i\Vert^2}$（$C_i$是$\vec{A}$在$\vec{v}_i$上的投影）\par
+\end{enumerate}\par
+那么，这组“子矢量”被称为一组“正交基”。\par
+
+\subsection{信号的分解}
+我们希望，对于任意信号$f(t)$，可以分解为若干“子信号”$v_i(t)$且$t\in[a,b]$，若“子信号”满足：\par
+\begin{enumerate}[label=(\arabic*),itemindent=0pt,labelindent=\parindent,labelwidth=2em,labelsep=5pt,leftmargin=*]
+    \item $<v_i(t),v_j(t)>=\left\{
+          \begin{array}{cl}
+          1 &  i=j \\
+          0 &  i\neq{j} \\
+          \end{array} \right.$\par
+    \item 如果在$\{v_1(t),v_2(t),\ldots,v_n(t),\ldots\}$之外，不存在任何$g(t)\neq0$，满足$\langle{v_i(t),g(t)}\rangle=0$，则称$\{v_1(t),v_2(t),\ldots,v_n(t),\ldots\}$为完备集。\par
+          则$f(t)=\sum{C_iv_i(t)}$，其中$C_i=\frac{\langle{f(t),v_i(t)}\rangle}{\|v_i(t)\Vert^2}  $\par
+\end{enumerate}\par
+那么，这组“子信号”被称为一组“正交完备集”。\par
+
+\subsection{以下特殊信号是否为正交完备集？}
+\begin{enumerate}[label=(\arabic*),itemindent=0pt,labelindent=\parindent,labelwidth=2em,labelsep=5pt,leftmargin=*]
+    \item $\delta$函数：$\delta(t)/\delta[k]$是正交完备集\par
+    \item 阶跃函数：$U(t)/U[k]$不正交\par
+    \item 门函数：$G(t)$正交不完备\par
+    \item 随机分布函数：$N(\mu,\delta)$：$f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$是正交完备集\par
+\end{enumerate}
+
+\section{傅里叶级数（Fourier Series，FS）}
+\subsection{$\cos(x)$和$\sin(x)$}
+$\left\{\begin{aligned}&\cos(x),\cos(2x),\ldots,\cos(kx) \\&\sin(x),\sin(2x),\ldots,\sin(kx)\end{aligned}\right.$是否正交？是否完备？\par
+\begin{enumerate}[label=(\arabic*),itemindent=0pt,labelindent=\parindent,labelwidth=2em,labelsep=5pt,leftmargin=*]
+    \item $\cos(kx)$，$\cos(lx)$（$k,l\in\mathbb{Z}^+$，$k,l=0,1,2,\ldots,n,\ldots$）在$[0,2\pi]$是否正交？\par
+          证明：$\int_{0}^{2\pi}\cos(kx)\cos(lx)\rm{dx}=$
+          \begin{align*}
+            \left\{
+            \begin{aligned}
+                &\begin{aligned}
+                    k=l=0\quad\int_{0}^{2\pi}{\rm{dx}}&=x\big|_{0}^{2\pi} \\
+                    &=2\pi
+                \end{aligned} \\
+                &\begin{aligned}
+                    k=l\neq0\quad\int_{0}^{2\pi}[\cos(kx)]^2{\rm{dx}}&=\frac{1}{2}\int_{0}^{2\pi}[1+\cos(2kx)]{\rm{dx}} \\
+                    &=\frac{1}{2}[\int_{0}^{2\pi}{\rm{dx}}+\int_{0}^{2\pi}\cos(2kx){\rm{dx}}] \\
+                    &=\frac{1}{2}(2\pi+\frac{2}{2k}\sin(kx)\big|_{0}^{2\pi}) \\
+                    &=\pi
+                \end{aligned} \\
+                &\begin{aligned}
+                    k\neq{l}\quad\int_{0}^{2\pi}\cos(kx)\cos(lx){\rm{dx}}&=\frac{1}{2}[\int_{0}^{2\pi}\cos(k+l)x+\int_{0}^{2\pi}\cos(k-l)x]{\rm{dx}} \\
+                    &=\frac{1}{2}\cdot\frac{1}{k+1}\sin(k+l)x\big|_{0}^{2\pi}+\frac{1}{2}\cdot\frac{1}{k-1}\sin(k-l)x\big|_{0}^{2\pi} \\
+                    &=0
+                \end{aligned}
+            \end{aligned}
+            \right.
+          \end{align*} \par
+          因此，$\cos(x),\cos(2x),\ldots,\cos(nx),\ldots$在$[0,2\pi]$内正交。\par
+          \textbf{Question:}\par
+          \begin{enumerate}[label=\textcircled{\arabic*}]
+            \item $\cos(kx)\quad{k=0,1,\ldots,n,\ldots}$是否正交？(已证明)
+            \item $\sin(kx)\quad{k=0,1,\ldots,n,\ldots}$是否正交？
+            \item $\cos(kx)\quad\sin(lx)\quad{k,l\in\mathbb{Z}}$是否正交？
+          \end{enumerate}
+    \item $\cos(x),\cos(2x),\ldots,\cos(nx),\ldots$在$[0,2\pi]$内完备（详见书籍等证明资料
+    ）。
+\end{enumerate}
+
+\subsection{FS 的不同形式}
+$f(t)=\sum_{k=0}^{+\infty}a_k\cos(kt)+\sum_{k=0}^{+\infty}b_k\sin(kt)\quad{k\in\mathbb{Z},k=[0,1,2,\ldots]}$ \par
+其中，$a_k=\frac{\langle{f(t),\cos(kt)}\rangle}{\langle{\cos(kt),\cos(kt)}\rangle}$\quad
+$b_k=\frac{\langle{f(t),\sin(kt)}\rangle}{\langle{\sin(kt),\sin(kt)}\rangle}$\quad$t\in[0,2\pi]$
+\begin{enumerate}[label=(\arabic*),itemindent=0pt,labelindent=\parindent,labelwidth=2em,labelsep=5pt,leftmargin=*]
+    \item “三角形式”：\par
+          $f(t)=\frac{a_0}{2}+\sum_{k=1}^{+\infty}a_k\cos(kt)+\sum_{k=1}^{+\infty}b_k\sin(kt)$\quad$t\in[0,2\pi]$ \par
+          $\rightarrow t\in[-\infty,+\infty]$\quad$f(t)=f(t\pm{2k\pi})$ \par
+          $f(t)=\frac{a_0}{2}+\sum_{k=1}^{+\infty}a_k\cos(\frac{2\pi}{T}kt)+\sum_{k=1}^{+\infty}b_k\sin(\frac{2\pi}{T}kt)$\quad$t\in[a,b]$ \par
+          （隐含：$f(t)=f(t\pm{kT})$\quad$T\in\mathbb{R}$）
+    \item “余弦形式”：
+          \begin{flalign*}
+            f(t)&=\frac{a_0}{2}+\sum_{k=1}^{+\infty}[a_k\cos(\frac{2\pi}{T}kt)+b_k\sin(\frac{2\pi}{T}kt)] &\\
+            &=\frac{a_0}{2}+\sum_{k=1}^{+\infty}[A_k\cos(\psi)\cos(\frac{2\pi}{T}kt)+A_k\sin(\psi)\sin(\frac{2\pi}{T}kt)] &\\
+            &=\frac{a_0}{2}+\sum_{k=1}^{+\infty}[A_k\cos(\frac{2\pi}{T}kt-\psi)]
+          \end{flalign*} \par
+          其中，$A_k=\sqrt{{a_k}^2+{b_k}^2}$\quad$\psi=\arctan(\frac{b_k}{a_k})$
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,55 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, bm, color, framed, graphicx, hyperref, mathrsfs, float, caption,subfigure}
+\usepackage[justification=centering]{caption}
+
+% multi-column
+\usepackage{tasks}
+% itemize
+\NewTasksEnvironment[label=(\arabic*), label-width=3ex]{exercise}
+%\settasks{
+% label = \theexercise.\arabic* ,
+% item-indent = 2em ,
+% label-width = 2em ,
+% label-offset = 0pt
+%}
+
+\everymath{\displaystyle}
+
+\title{\textbf{第八次随堂测试}}
+\author{U08M11002 Fall 2023}
+\date{2023 年 12 月 22 日}
+\linespread{1}
+\definecolor{shadecolor}{RGB}{241, 241, 255}
+
+\newcounter{problemname}
+\newenvironment{problem}{\stepcounter{problemname}\par\noindent\textbf{题目\arabic{problemname}. }}{\\\par}
+\newenvironment{warning}{\begin{shaded}\par\noindent\textbf{提交作业方式：}}{\end{shaded}\par}
+
+\begin{document}
+
+\maketitle
+
+\hspace{1em}
+
+\pagestyle{plain}
+  
+\begin{problem}
+    连线题 （必须给出原因说明）\par
+    \underline{频域信号 \qquad \qquad \qquad \qquad \qquad \qquad  时域信号 \qquad  }\par
+    离散，周期  \qquad \qquad \qquad \qquad \qquad 离散，周期 \par
+    离散，非周期  \qquad \qquad \qquad \qquad \quad 离散，非周期 \par
+    连续，周期  \qquad \qquad \qquad \qquad \qquad 连续，周期 \par
+    连续，非周期  \qquad \qquad \qquad \qquad \quad 连续，非周期 \par
+\quad
+\end{problem}
+
+\begin{problem}
+    对于一组有限离散信号 $[a_1,a_2,a_3,\ldots,a_n]$ \par
+    \begin{exercise}(1)
+        \task 在信号的末尾加$n$个零，其频谱会如何变化？请给出说明。
+        \task （加分题，2分）在$a_1,a_2,a_3,\ldots,a_n$之间加 0 ，使其成为$[a_1,0,a_2,0,a_3,0,\ldots,a_n,0]$,其频谱会如何变化？请给出说明。
+    \end{exercise}    
+\quad
+\end{problem}
+	
+\end{document}

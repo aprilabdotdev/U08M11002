@@ -1,0 +1,51 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, bm, color, framed, graphicx, hyperref, mathrsfs, float, caption,subfigure}
+\usepackage[justification=centering]{caption}
+
+% multi-column
+\usepackage{tasks}
+% itemize
+\NewTasksEnvironment[label=(\arabic*), label-width=3ex]{exercise}
+%\settasks{
+% label = \theexercise.\arabic* ,
+% item-indent = 2em ,
+% label-width = 2em ,
+% label-offset = 0pt
+%}
+
+\everymath{\displaystyle}
+
+\title{\textbf{第五次随堂测试}}
+\author{U08M11002 Fall 2023}
+\linespread{1}
+\definecolor{shadecolor}{RGB}{241, 241, 255}
+
+\newcounter{problemname}
+\newenvironment{problem}{\stepcounter{problemname}\par\noindent\textbf{题目\arabic{problemname}. }}{\\\par}
+\newenvironment{warning}{\begin{shaded}\par\noindent\textbf{提交作业方式：}}{\end{shaded}\par}
+
+\begin{document}
+
+\maketitle
+
+\hspace{1em}
+
+\pagestyle{plain}
+  
+\begin{problem}
+    $f(t) = \mathrm{Sa}(1000\pi t)\mathrm{Sa}(3000\pi t)\cos(8000\pi t)$，$s(t) = \sum_{-\infty}^{\infty}\delta(t - nT)$，
+    \newline
+    $f_s(t) = f(t)s(t)$。
+    \begin{exercise}
+    	\task 若要从$f_s(t)$无失真的恢复$f(t)$,求最大抽样周期$T_N$；
+    	\task 当抽样周期$T = T_N$时画出$f_s(t)$的频谱图。
+    \end{exercise}
+    
+\quad
+\end{problem}
+
+\begin{problem}
+	已知频域系统函数$H(jw) = \frac{jw}{-w^2 + j10w + 21}$,系统的初始状态$y(0) = 7$，$y^{'}(0) = 8$，激励$f(t) = e^{-t}U(t)$。求全响应$y(t)$。
+\end{problem}
+	
+\end{document}

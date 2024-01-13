@@ -1,0 +1,47 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, bm, color, framed, graphicx, hyperref, mathrsfs, float, caption,subfigure}
+\usepackage[justification=centering]{caption}
+
+% multi-column
+\usepackage{tasks}
+% itemize
+\NewTasksEnvironment[label=(\arabic*), label-width=3ex]{exercise}
+%\settasks{
+% label = \theexercise.\arabic* ,
+% item-indent = 2em ,
+% label-width = 2em ,
+% label-offset = 0pt
+%}
+
+\everymath{\displaystyle}
+
+\title{\textbf{第七次随堂测试}}
+\author{U08M11002 Fall 2023}
+\date{2023 年 12 月 15 日}
+\linespread{1}
+\definecolor{shadecolor}{RGB}{241, 241, 255}
+
+\newcounter{problemname}
+\newenvironment{problem}{\stepcounter{problemname}\par\noindent\textbf{题目\arabic{problemname}. }}{\\\par}
+\newenvironment{warning}{\begin{shaded}\par\noindent\textbf{提交作业方式：}}{\end{shaded}\par}
+
+\begin{document}
+
+\maketitle
+
+\hspace{1em}
+
+\pagestyle{plain}
+  
+\begin{problem}
+    已知某LTI系统得微分方程  $y'(t)+y(t)=f(t)$ \par
+    \begin{exercise}(1)
+        \task 若全响应为 $y(t)=[3e^{-t}+2e^{-3t}]u(t),y(0^-)=3$，求零输入响应和零状态响应。
+        \task 若 $y(0^-)=10$，求零输入响应。
+        \task 若全响应为 $y(t)=[3e^{-t}+2e^{-3t}]u(t),y(0^-)=3$，求 $y'(t)+y(t)=f(t-2)$ 的零状态响应。
+        \task 若全响应为 $y(t)=[3e^{-t}+2e^{-3t}]u(t),y(0^-)=3$，求 $y'(t)+y(t)=f'(t)+3f(t)$ 的零状态响应。
+    \end{exercise}    
+\quad
+\end{problem}
+	
+\end{document}
